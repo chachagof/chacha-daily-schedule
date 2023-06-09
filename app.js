@@ -11,9 +11,10 @@ if(process.env.NODE_ENV !== 'production'){
 }
 require('./config/mongoose')
 
-app.use(routes)
 app.engine('handlebars',exphbs.engine({defaultLayout:'main'}))
 app.set('view engine','handlebars')
+app.use(express.urlencoded({extended:true}))
+app.use(routes)
 
 
 

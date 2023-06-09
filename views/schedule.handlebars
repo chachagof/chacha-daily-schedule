@@ -1,7 +1,7 @@
 <div class="card" style="border-radius: 15px;">
   <div class="card-body">
     {{!-- title --}}
-    <h5 class="card-title"><img src="https://cdn2.iconfinder.com/data/icons/business-office-icons/256/To-do_List-512.png" class="img-fluid img-thumbnail" alt="" style="height: 50px;">  Daily task</h5>
+    <h5 class="card-title"><img src="https://cdn2.iconfinder.com/data/icons/business-office-icons/256/To-do_List-512.png" class="img-fluid img-thumbnail" alt="" style="height: 50px;">  Daily tasks</h5>
     {{!-- checkbox --}} 
     {{#each tasks}}
     <div class="form-check">
@@ -11,9 +11,11 @@
       </label>
     </div>
     {{/each}}
+    <div class="button-group d-flex justify-content-between">
     {{!-- create --}}
-    <a href="task/new" class="card-link btn btn-success">create new task</a>
+    <a href="/task/new" class="card-link btn btn-success">create new task</a>
     {{!-- edit --}}
-    <a href="task/:id" class="card-link btn btn-info">edit task</a>
+    <a href="/task/:id" class="card-link btn btn-info">edit task</a>
+    </div>
   </div>
 </div>
