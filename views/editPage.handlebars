@@ -1,0 +1,23 @@
+<div class="card" style="border-radius: 15px;">
+  <div class="card-body">
+    {{!-- title --}}
+    <h5 class="card-title"><img src="https://cdn2.iconfinder.com/data/icons/business-office-icons/256/To-do_List-512.png" class="img-fluid img-thumbnail" alt="" style="height: 50px;">  Daily tasks</h5>
+    {{!-- checkbox --}} 
+    {{#each tasks}}
+    <div class="form-check d-flex justify-content-between">
+      <div class="input-container">
+        <input class="form-check-input" type="checkbox" value="" id="{{this._id}}">
+      <label class="form-check-label" for="{{this._id}}">
+        {{this.name}}
+      </label>
+      </div>
+      <a href="/task/{{this._id}}/edit" class="card-link btn btn-info">Edit</a>
+      <form action="/task/{{this._id}}/delete" method="post">
+        <button type="submit"  class="btn btn-danger">Delete</button>
+      </form>
+    </div>
+    {{/each}}
+    {{!-- back --}}
+    <a href="javascript:history.back()" class="card-link btn btn-secondary">Back</a>
+  </div>
+</div>
