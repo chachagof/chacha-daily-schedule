@@ -4,18 +4,18 @@
     <h5 class="card-title"><img src="https://cdn2.iconfinder.com/data/icons/business-office-icons/256/To-do_List-512.png" class="img-fluid img-thumbnail" alt="" style="height: 50px;">  Daily tasks</h5>
     {{!-- checkbox --}} 
     {{#each tasks}}
-    <div class="form-check">
-      <input class="form-check-input" type="checkbox" value="" id="{{this._id}}">
+    <div class="form-check d-flex justify-content-between">
+      <div class="input-container">
+        <input class="form-check-input" type="checkbox" value="" id="{{this._id}}">
       <label class="form-check-label" for="{{this._id}}">
         {{this.name}}
       </label>
+      </div>
+      <a href="/task/{{this._id}}/edit" class="card-link btn btn-info">Edit</a>
+      
     </div>
     {{/each}}
-    <div class="button-group d-flex justify-content-between">
-    {{!-- create --}}
-    <a href="/task/new" class="card-link btn btn-success">create new task</a>
-    {{!-- edit --}}
-    <a href="/task/edit" class="card-link btn btn-info">edit task</a>
-    </div>
+    {{!-- back --}}
+    <a href="javascript:history.back()" class="card-link btn btn-secondary">Back</a>
   </div>
 </div>

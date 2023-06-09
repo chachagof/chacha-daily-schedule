@@ -15,4 +15,36 @@ router.post('/',(req,res)=>{
     .catch(err => console.error(err))
 })
 
+//edit page
+router.get('/edit',(req,res)=>{
+  return Task.find()
+    .lean()
+    .then(tasks => res.render('editPage',{tasks}))
+    .catch(err => console.log(err))
+})
+
+//edit one page
+router.get('/:id/edit',(req,res)=>{
+  const id = req.params.id
+  return Task.findById(id)
+    .lean()
+    .then(tasks => {
+      res.render('edit',{tasks})
+    })
+    .catch(err => console.log(err))
+})
+
+//edit 
+router.post('/:id',(req,res)=>{
+  const editTask = req.body.editTask
+  const id = req.params.id
+  console.log(id)
+  return Task.findByIdAndUpdate(id,{name:editTask})
+    .then(task =>{
+      res.redirect('/')
+    })
+    .catch(err => console.log(err))
+})
+
+
 module.exports = router

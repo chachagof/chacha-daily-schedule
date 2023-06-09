@@ -6,13 +6,13 @@
     <form action="/task" method="post">
       <div class="mb-3">
         <label for="exampleInputPassword1" class="form-label">New task</label>
-        <input type="password" class="form-control" id="newTask" name="newTask" placeholder="new task">
+        <input type="text" class="form-control" id="newTask" name="newTask" placeholder="new task">
       </div>
       <div class="button-group d-flex justify-content-between">
         {{!-- create --}}
         <button type="submit" class="card-link btn btn-success">Create</button>
         {{!-- edit --}}
-        <a href="/" class="card-link btn btn-info">Back</a>
+        <a href="javascript:history.back()" class="card-link btn btn-secondary">Back</a>
       </div>
     </form>
     

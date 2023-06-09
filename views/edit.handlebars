@@ -1,0 +1,18 @@
+<div class="card" style="border-radius: 15px;">
+  <div class="card-body">
+    {{!-- title --}}
+    <h5 class="card-title"><img src="https://cdn2.iconfinder.com/data/icons/business-office-icons/256/To-do_List-512.png" class="img-fluid img-thumbnail" alt="" style="height: 50px;">  Daily tasks</h5>
+    {{!-- checkbox --}} 
+    <form action="/task/{{tasks._id}}" method="post">
+      <div class="mb-3">
+        <input type="text" class="form-control" id="edit-task" name="editTask" value="{{tasks.name}}">
+      </div>
+      <div class="button-group d-flex justify-content-between">
+        {{!-- edit --}}
+        <button type="submit" class="card-link btn btn-success">Edit</button>
+          {{!-- back --}}
+        <a href="javascript:history.back()" class="card-link btn btn-secondary">Back</a>
+      </div>
+    </form>
+  </div>
+</div>
