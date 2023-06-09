@@ -38,11 +38,18 @@ router.get('/:id/edit',(req,res)=>{
 router.post('/:id',(req,res)=>{
   const editTask = req.body.editTask
   const id = req.params.id
-  console.log(id)
   return Task.findByIdAndUpdate(id,{name:editTask})
     .then(task =>{
       res.redirect('/')
     })
+    .catch(err => console.log(err))
+})
+
+//delete
+router.post('/:id/delete',(req,res)=>{
+  const id = req.params.id
+  return Task.findByIdAndDelete(id)
+    .then(()=>res.redirect('/'))
     .catch(err => console.log(err))
 })
 

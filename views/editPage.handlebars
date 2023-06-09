@@ -12,7 +12,9 @@
       </label>
       </div>
       <a href="/task/{{this._id}}/edit" class="card-link btn btn-info">Edit</a>
-      
+      <form action="/task/{{this._id}}/delete" method="post">
+        <button type="submit"  class="btn btn-danger">Delete</button>
+      </form>
     </div>
     {{/each}}
     {{!-- back --}}
