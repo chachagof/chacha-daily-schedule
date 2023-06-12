@@ -36,12 +36,22 @@ router.get('/:id/edit',(req,res)=>{
 
 //edit 
 router.post('/:id',(req,res)=>{
-  const editTask = req.body.editTask
+  const editTask = req.body.editTask || null
+  const done = req.body.done
   const id = req.params.id
-  return Task.findByIdAndUpdate(id,{name:editTask})
+  console.log(req.body)
+  return Task.findById(id)
     .then(task =>{
-      res.redirect('/')
+      if(editTask){
+        task.name = editTask
+        return task.save()
+      }
+      if(done){
+        task.done = done
+        return task.save()
+      }
     })
+    .then(()=> res.redirect('/'))
     .catch(err => console.log(err))
 })
 
