@@ -1,0 +1,44 @@
+.body-container {
+  height: 600px;
+  width:1200px;
+  border:1px solid #c9c9c9;
+  border-radius: 15px;
+}
+
+.navbar {
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+}
+
+.card {
+  height: 450px;
+  width: 500px;
+}
+
+.card-title {
+  height: 50px;
+  width: 250px;
+}
+
+.button-group {
+  height: 40px;
+}
+
+.task-list {
+  height: 300px;
+  overflow-x:auto;
+}
+
+.input-container {
+  max-width: 260px;
+  overflow: hidden;
+}
+
+.form-check-label {
+  font-size: 20px;
+}
+
+.strike-through {
+  color:#c9c9c9;
+  text-decoration: line-through;
+}
