@@ -10,6 +10,10 @@ router.get('/new',(req,res)=>{
 //create task
 router.post('/',(req,res)=>{
   const newTask = req.body.newTask
+  if(!newTask){
+    req.flash('warning_msg', 'Task is be required !')
+    return res.redirect('task/new')
+  }
   return Task.create({name:newTask})
     .then(()=>res.redirect('/'))
     .catch(err => console.error(err))
@@ -39,7 +43,6 @@ router.post('/:id',(req,res)=>{
   const editTask = req.body.editTask || null
   const done = req.body.done
   const id = req.params.id
-  console.log(req.body)
   return Task.findById(id)
     .then(task =>{
       if(editTask){
