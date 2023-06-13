@@ -6,6 +6,7 @@
 }
 
 .navbar {
+  width:100%;
   border-top-left-radius: 15px;
   border-top-right-radius: 15px;
 }
@@ -13,6 +14,10 @@
 .card {
   height: 450px;
   width: 500px;
+}
+
+.card-body {
+  width: 400px;
 }
 
 .card-title {
@@ -47,6 +52,40 @@
   color:#c9c9c9;
   text-decoration: line-through;
 }
+
 .bi {
   font-size: 18px;
+}
+
+.function-container {
+  width: 1000px;
+}
+
+.count-down {
+  height: 200px;
+  width: 300px;
+  border:1px solid #c9c9c9;
+  border-radius: 15px;
+}
+
+.time {
+  height: 100px;
+  width: 250px;
+}
+
+#hours,#minutes,#seconds {
+  height: 100%;
+  width: 70px;
+  text-align: center;
+  line-height: 100px;
+  font-size: 50px;
+  color: #f4f1f1;
+  border-radius: 15px;
+  background-color: black;
+}
+
+.separate {
+  height: 100%;
+  line-height: 100px;
+  font-size: 50px;
 }
