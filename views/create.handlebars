@@ -4,9 +4,10 @@
     <h5 class="card-title"><img src="https://cdn2.iconfinder.com/data/icons/business-office-icons/256/To-do_List-512.png" class="img-fluid img-thumbnail" alt="" style="height: 50px;">  Create new task</h5>
     {{!-- create task --}} 
     <form action="/task" method="post">
+      {{> error}}
       <div class="mb-3">
         <label for="exampleInputPassword1" class="form-label">New task</label>
-        <input type="text" class="form-control" id="newTask" name="newTask" placeholder="new task">
+        <input type="text" class="form-control" id="newTask" name="newTask" placeholder="new task" required>
       </div>
       <div class="button-group d-flex justify-content-between">
         {{!-- create --}}

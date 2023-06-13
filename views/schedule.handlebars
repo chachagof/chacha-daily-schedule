@@ -1,16 +1,24 @@
-<div class="card" style="border-radius: 15px;">
-  <div class="card-body">
+<div class="count-down-container">
+  {{> timeCountDown}}
+</div>
+<div class="card ms-2" style="border-radius: 15px;">
+  <div class="card-body d-flex flex-column justify-content-between ">
     {{!-- title --}}
     <h5 class="card-title"><img src="https://cdn2.iconfinder.com/data/icons/business-office-icons/256/To-do_List-512.png" class="img-fluid img-thumbnail" alt="" style="height: 50px;">  Daily tasks</h5>
     {{!-- checkbox --}} 
-    {{#each tasks}}
-    <div class="form-check">
-      <input class="form-check-input" type="checkbox" value="" id="{{this._id}}">
-      <label class="form-check-label" for="{{this._id}}">
-        {{this.name}}
-      </label>
+    <div class="task-list pt-3 pb-3" >
+      {{#each tasks}}
+      <div class="task-container">
+        <form class="d-flex" action="/task/{{this._id}}" method="post">
+          <button type="submit" class="btn">{{#if this.done}}<i class="bi bi-clipboard-check">{{else}}<i class="bi bi-clipboard">{{/if}}</i></button>
+          <input type="text" class="form-check-input" type="checkbox"  name="done" value="{{#if this.done}}false{{else}}true{{/if}}" id="{{this._id}}">
+          <label class="form-check-label d-flex {{#if this.done}}strike-through{{/if}}" for="{{this._id}}">
+            {{this.name}}
+          </label>
+        </form>
+      </div>
+      {{/each}}
     </div>
-    {{/each}}
     <div class="button-group d-flex justify-content-between">
     {{!-- create --}}
     <a href="/task/new" class="card-link btn btn-success">create new task</a>

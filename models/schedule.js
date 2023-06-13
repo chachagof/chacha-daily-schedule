@@ -6,7 +6,8 @@ const task = new Schema({
     require:true
   },
   done:{
-    type:Boolean
+    type:Boolean,
+    default:false
   }
 })
 

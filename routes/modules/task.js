@@ -10,6 +10,10 @@ router.get('/new',(req,res)=>{
 //create task
 router.post('/',(req,res)=>{
   const newTask = req.body.newTask
+  if(!newTask){
+    req.flash('warning_msg', 'Task is be required !')
+    return res.redirect('task/new')
+  }
   return Task.create({name:newTask})
     .then(()=>res.redirect('/'))
     .catch(err => console.error(err))
@@ -36,12 +40,21 @@ router.get('/:id/edit',(req,res)=>{
 
 //edit 
 router.post('/:id',(req,res)=>{
-  const editTask = req.body.editTask
+  const editTask = req.body.editTask || null
+  const done = req.body.done
   const id = req.params.id
-  return Task.findByIdAndUpdate(id,{name:editTask})
+  return Task.findById(id)
     .then(task =>{
-      res.redirect('/')
+      if(editTask){
+        task.name = editTask
+        return task.save()
+      }
+      if(done){
+        task.done = done
+        return task.save()
+      }
     })
+    .then(()=> res.redirect('/'))
     .catch(err => console.log(err))
 })
 
@@ -52,6 +65,7 @@ router.post('/:id/delete',(req,res)=>{
     .then(()=>res.redirect('/'))
     .catch(err => console.log(err))
 })
+
 
 
 module.exports = router
