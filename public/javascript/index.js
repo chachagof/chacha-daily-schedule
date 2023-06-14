@@ -1,9 +1,21 @@
 //倒數計時器
 function countDown(){
   setInterval(()=>{
-  document.getElementById('hours').innerHTML = `${dayjs.duration(dayjs().endOf('day').diff(dayjs())).hours()}`
-  document.getElementById('minutes').innerHTML = `${dayjs.duration(dayjs().endOf('day').diff(dayjs())).minutes()}`
-  document.getElementById('seconds').innerHTML = `${dayjs.duration(dayjs().endOf('day').diff(dayjs())).seconds()}`
+    if(dayjs.duration(dayjs().endOf('day').diff(dayjs())).hours() < 10){
+      document.getElementById('hours').innerHTML = `0${dayjs.duration(dayjs().endOf('day').diff(dayjs())).hours()}`
+    }else{
+      document.getElementById('hours').innerHTML = `${dayjs.duration(dayjs().endOf('day').diff(dayjs())).hours()}`
+    }
+    if(dayjs.duration(dayjs().endOf('day').diff(dayjs())).minutes() < 10){
+      document.getElementById('minutes').innerHTML = `0${dayjs.duration(dayjs().endOf('day').diff(dayjs())).minutes()}`
+    }else{
+      document.getElementById('minutes').innerHTML = `${dayjs.duration(dayjs().endOf('day').diff(dayjs())).minutes()}`
+    }
+    if(dayjs.duration(dayjs().endOf('day').diff(dayjs())).seconds() < 10){
+      document.getElementById('seconds').innerHTML = `0${dayjs.duration(dayjs().endOf('day').diff(dayjs())).seconds()}`
+    }else{
+      document.getElementById('seconds').innerHTML = `${dayjs.duration(dayjs().endOf('day').diff(dayjs())).seconds()}`
+    }
 },1000)
 }
 
