@@ -12,6 +12,7 @@ if(process.env.NODE_ENV !== 'production'){
   require('dotenv').config()
 }
 require('./config/mongoose')
+require('./helper/nodeCorn')
 
 app.engine('handlebars',exphbs.engine({defaultLayout:'main'}))
 app.set('view engine','handlebars')
