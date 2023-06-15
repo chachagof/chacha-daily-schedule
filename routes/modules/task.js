@@ -10,11 +10,15 @@ router.get('/new',(req,res)=>{
 //create task
 router.post('/',(req,res)=>{
   const newTask = req.body.newTask
-  if(!newTask){
+  if(!newTask || newTask.trim() === ''){
     req.flash('warning_msg', 'Task is be required !')
     return res.redirect('task/new')
   }
-  return Task.create({name:newTask})
+  if(newTask.length > 30){
+    req.flash('warning_msg',`Task can't name more than 30 characters`)
+    return res.redirect('/task/new')
+  }
+  return Task.create({name:newTask.trim()})
     .then(()=>res.redirect('/'))
     .catch(err => console.error(err))
 })

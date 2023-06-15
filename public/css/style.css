@@ -106,7 +106,7 @@
 #progress {
   height: 100%;
   width: 0%;
-  background-color: #4caf50;
+  background-color: #79e77c;
   border-radius: 15px;
   transition: width 0.3s;
 }
