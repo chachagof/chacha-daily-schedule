@@ -30,10 +30,11 @@ function taskProgress (){
   const taskCountWord = document.querySelector('.task-count-word')
   if(progress){
     setInterval(()=>{
-    progressRate = Math.floor((finishTasks.length/tasks.length) * 100)
-    taskCountWord.innerHTML = `完成進度:${progressRate}%`
-    progress.style.width = `${progressRate}%`
-  },1000)
+      if(tasks.length === 0)return taskCountWord.innerHTML = '完成進度:0%'
+      progressRate = Math.floor((finishTasks.length/tasks.length) * 100)
+      taskCountWord.innerHTML = `完成進度:${progressRate}%`
+      progress.style.width = `${progressRate}%`
+    },1000)
   }
 }
 
