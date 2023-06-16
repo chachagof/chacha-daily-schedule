@@ -23,8 +23,10 @@ app.use(express.urlencoded({extended:true}))
 app.use(express.static('public'))
 
 app.use((req,res,next)=>{
+  res.isAuthenticated = req.isAuthenticated()
   res.locals.user = req.user
   res.locals.warning_msg = req.flash('warning_msg') 
+  res.locals.success_msg = req.flash('success_msg')
   next()
 })
 

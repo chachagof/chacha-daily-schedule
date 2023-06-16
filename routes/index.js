@@ -5,8 +5,10 @@ const home = require('./modules/home')
 const task = require('./modules/task')
 const user = require('./modules/user')
 
-router.use('/task',task)
+const { authenticator } = require('../middleware/auth')
+
+router.use('/task',authenticator,task)
 router.use('/users',user)
-router.use('/',home)
+router.use('/',authenticator,home)
 
 module.exports = router

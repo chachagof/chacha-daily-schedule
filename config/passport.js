@@ -6,7 +6,7 @@ module.exports = app => {
   app.use(passport.initialize())
   app.use(passport.session())
 
-  passport.use(new localStrategy({usernameField:"email",passReqToCallback:true},(email,password,cb)=>{
+  passport.use(new localStrategy({usernameField:"email",passReqToCallback:true},(req,email,password,cb)=>{
     User.findOne({email})
       .then(user => {
         if(!user){
@@ -25,7 +25,7 @@ module.exports = app => {
   })
 
   passport.deserializeUser((id,cb)=>{
-    User.findById({id})
+    User.findById(id)
       .lean()
       .then(user =>cb(null,user))
       .catch(err => cb(err,null))
