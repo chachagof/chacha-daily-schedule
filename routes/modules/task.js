@@ -43,7 +43,7 @@ router.get('/:id/edit',(req,res)=>{
 })
 
 //edit 
-router.post('/:id',(req,res)=>{
+router.put('/:id',(req,res)=>{
   const editTask = req.body.editTask || null
   const done = req.body.done
   const id = req.params.id
@@ -63,7 +63,7 @@ router.post('/:id',(req,res)=>{
 })
 
 //delete
-router.post('/:id/delete',(req,res)=>{
+router.delete('/:id',(req,res)=>{
   const id = req.params.id
   return Task.findByIdAndDelete(id)
     .then(()=>res.redirect('/'))

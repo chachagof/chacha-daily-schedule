@@ -14,7 +14,7 @@
         </div>
         <div class="button-container d-flex">
           <a href="/task/{{this._id}}/edit" class="card-link btn btn-outline-info me-1">Edit</a>
-          <form action="/task/{{this._id}}/delete" method="post">
+          <form action="/task/{{this._id}}?_method=DELETE" method="post">
           <button type="submit"  class="btn btn-outline-danger">Delete</button>
           </form>
         </div>

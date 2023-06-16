@@ -3,6 +3,7 @@ const exphbs = require('express-handlebars')
 const flash = require('connect-flash')
 const session = require('express-session')
 const usePassport = require('./config/passport')
+const methodOverride = require('method-override')
 
 const app = express();
 const port = 3000;
@@ -18,6 +19,7 @@ app.engine('handlebars',exphbs.engine({defaultLayout:'main'}))
 app.set('view engine','handlebars')
 app.use(session({ secret:process.env.SECRET,resave:false,saveUninitialized:true}))
 usePassport(app)
+app.use(methodOverride('_method'))
 app.use(flash())
 app.use(express.urlencoded({extended:true}))
 app.use(express.static('public'))
