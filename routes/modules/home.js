@@ -4,8 +4,10 @@ const Task = require('../../models/schedule')
 
 
 router.get('/',(req,res)=>{
-  Task.find()
+  const userId = req.user._id
+  Task.find({ userId })
     .lean()
+    .sort({ _id:'asc' })
     .then(tasks => {
       res.render('schedule',{tasks})
     })

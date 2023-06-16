@@ -8,6 +8,12 @@ const task = new Schema({
   done:{
     type:Boolean,
     default:false
+  },
+  userId:{
+    type:Schema.Types.ObjectId,
+    ref:'User',
+    index:true,
+    require:true
   }
 })
 

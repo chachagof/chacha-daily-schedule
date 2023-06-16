@@ -10,6 +10,7 @@ router.get('/new',(req,res)=>{
 //create task
 router.post('/',(req,res)=>{
   const newTask = req.body.newTask
+  const userId = req.user._id
   if(!newTask || newTask.trim() === ''){
     req.flash('warning_msg', 'Task is be required !')
     return res.redirect('task/new')
@@ -18,14 +19,15 @@ router.post('/',(req,res)=>{
     req.flash('warning_msg',`Task can't name more than 30 characters`)
     return res.redirect('/task/new')
   }
-  return Task.create({name:newTask.trim()})
+  return Task.create({name:newTask.trim(),userId})
     .then(()=>res.redirect('/'))
     .catch(err => console.error(err))
 })
 
 //edit page
 router.get('/edit',(req,res)=>{
-  return Task.find()
+  const userId = req.user._id
+  return Task.find({ userId })
     .lean()
     .then(tasks => res.render('editPage',{tasks}))
     .catch(err => console.log(err))
@@ -33,8 +35,9 @@ router.get('/edit',(req,res)=>{
 
 //edit one page
 router.get('/:id/edit',(req,res)=>{
-  const id = req.params.id
-  return Task.findById(id)
+  const _id = req.params.id
+  const userId = req.user._id
+  return Task.findOne({ _id,userId })
     .lean()
     .then(tasks => {
       res.render('edit',{tasks})
@@ -66,7 +69,7 @@ router.put('/:id',(req,res)=>{
 router.delete('/:id',(req,res)=>{
   const id = req.params.id
   return Task.findByIdAndDelete(id)
-    .then(()=>res.redirect('/'))
+    .then(()=>res.redirect('/task/edit'))
     .catch(err => console.log(err))
 })
 
