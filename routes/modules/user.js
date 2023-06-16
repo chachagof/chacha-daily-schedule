@@ -56,5 +56,11 @@ router.post('/register',(req,res)=>{
     })
 })
 
+//logout
+router.get('/logout',(req,res)=>{
+  req.logout()
+    .then(()=>res.redirect('/'))
+    .catch(err=>console.logA(err))
+})
 
 module.exports = router
