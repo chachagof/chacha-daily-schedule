@@ -6,7 +6,6 @@ const Task = require('../../models/schedule')
 router.get('/',(req,res)=>{
   const userId = req.user._id
   const user = req.user
-  console.log(user)
   Task.find({ userId })
     .lean()
     .sort({ _id:'asc' })
