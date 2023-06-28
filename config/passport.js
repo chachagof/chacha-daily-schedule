@@ -1,6 +1,7 @@
 const passport = require('passport')
 const localStrategy = require('passport-local').Strategy
-const facebookStrategy = require('passport-facebook')
+const facebookStrategy = require('passport-facebook').Strategy
+const googleStrategy = require('passport-google-oauth20').Strategy
 const User = require('../models/users')
 const bcrypt = require('bcryptjs')
 
@@ -34,18 +35,44 @@ module.exports = app => {
     const { name, email } = profile._json
     User.findOne({ email })
       .then(user => {
-        if (user) return done(null, user)
+        if (user) return cb(null, user)
         const randomPassword = Math.random().toString(36).slice(-8)
         bcrypt
           .genSalt(10)
           .then(salt => bcrypt.hash(randomPassword, salt))
           .then(hash => User.create({
-            name,
+            userName:name,
             email,
             password: hash
           }))
-          .then(user => done(null, user))
-          .catch(err => done(err, false))
+          .then(user => cb(null, user))
+          .catch(err => cb(err, false))
+      })
+  }))
+
+  passport.use(new googleStrategy(
+    {
+    clientID: process.env.GOOGLE_CLIENT_ID,
+    clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+    callbackURL: process.env.GOOGLE_CALLBACK
+  },
+  function(accessToken, refreshToken, profile, cb) {
+    const {name,sub} = profile._json
+    const randomPassword = Math.random().toString(36).slice(-8)
+    User.findOne({email:`${sub}@google`})
+      .then(user => {
+        if(user)return cb(null,user)
+        bcrypt.genSalt(10)
+          .then(salt =>bcrypt.hash(randomPassword,salt))
+          .then(hash => {
+            User.create({
+              userName:name,
+              email:`${sub}@google`,
+              password:hash
+            })
+          })
+          .then(user => cb(null,user))
+          .catch(err => console.log(err))
       })
   }))
 
