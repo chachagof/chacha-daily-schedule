@@ -1,27 +1,27 @@
 <div class="card" style="border-radius: 15px;">
   <div class="card-body d-flex flex-column justify-content-evenly">
-    <h3 class="text-center mt-3">Register</h3>
+    {{> error}}
       <form action="/users/register" method="POST">
         {{!-- name --}}
         <div class="mb-3">
           <label for="name" class="mb-2">Name</label>
-          <input type="text" id="name" name="name" class="form-control" placeholder="Enter Name">
+          <input type="text" id="name" name="name" class="form-control" placeholder="Enter Name" value="{{name}}" required>
         </div>
         {{!-- email --}}
         <div class="mb-3">
           <label for="email" class="mb-2">Email</label>
-          <input type="email" id="email" name="email" class="form-control" placeholder="Enter Email">
+          <input type="email" id="email" name="email" class="form-control" placeholder="Enter Email" value="{{email}}" required>
         </div>
         {{!-- passport --}}
         <div class="mb-3">
           <label for="password" class="mb-2">Password</label>
-          <input type="password" id="password" name="password" class="form-control" placeholder="Enter Password">
+          <input type="password" id="password" name="password" class="form-control" placeholder="Enter Password" value="{{password}}" required>
         </div>
         {{!-- confirmPassword --}}
         <div class="mb-3">
           <label for="confirmPassword" class="mb-2">Confirm Password</label>
           <input type="password" id="confirmPassword" name="confirmPassword" class="form-control"
-            placeholder="Confirm Password">
+            placeholder="Confirm Password" value="{{confirmPassword}}" required>
         </div>
         <div class="button-container d-flex justify-content-between align-items-center">
           <button type="submit" class="btn btn-primary btn-block">Register</button>
